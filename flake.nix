@@ -36,6 +36,16 @@
             mkdir -p $out/bin
             cp zed.app/bin/zed $out/bin/
             
+            # Install desktop file
+            mkdir -p $out/share/applications
+            cp zed.app/share/applications/zed.desktop $out/share/applications/
+            
+            # Install icons
+            mkdir -p $out/share/icons/hicolor/512x512/apps
+            mkdir -p $out/share/icons/hicolor/1024x1024/apps
+            cp zed.app/share/icons/hicolor/512x512/apps/zed.png $out/share/icons/hicolor/512x512/apps/
+            cp zed.app/share/icons/hicolor/1024x1024/apps/zed.png $out/share/icons/hicolor/1024x1024/apps/
+            
             # Wrap the binary to ensure it can find necessary libraries
             wrapProgram $out/bin/zed \
               --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [
