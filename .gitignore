@@ -1,0 +1,23 @@
+# Nix build artifacts
+result
+result-*
+
+# Nix tarballs
+*.tar.gz
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+.tmp*
