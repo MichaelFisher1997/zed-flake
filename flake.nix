@@ -54,9 +54,21 @@
                 pkgs.xorg.libXcursor
                 pkgs.xorg.libXi
                 pkgs.xorg.libXrandr
+                pkgs.xorg.libxcb
+                pkgs.xorg.libXext
+                pkgs.xorg.libXinerama
+                pkgs.xorg.libXfixes
+                pkgs.xorg.libXrender
                 pkgs.wayland
                 pkgs.libxkbcommon
                 pkgs.vulkan-loader
+                pkgs.alsa-lib
+                pkgs.dbus
+                pkgs.glib
+                pkgs.fontconfig
+                pkgs.freetype
+                pkgs.expat
+                pkgs.zlib
               ]} \
               --set XDG_RUNTIME_DIR "/run/user/$(id -u)" \
               --set TMPDIR "/run/user/$(id -u)"
