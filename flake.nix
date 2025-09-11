@@ -58,7 +58,8 @@
                 pkgs.libxkbcommon
                 pkgs.vulkan-loader
               ]} \
-              --set XDG_RUNTIME_DIR "/run/user/$(id -u)"
+              --set XDG_RUNTIME_DIR "/run/user/$(id -u)" \
+              --set TMPDIR "/run/user/$(id -u)"
           '';
 
           meta = with pkgs.lib; {
