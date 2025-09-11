@@ -45,38 +45,7 @@ rustPlatform.buildRustPackage rec {
 
   cargoLock = {
     lockFile = "${src}/Cargo.lock";
-    outputHashes = {
-      "async-tungstenite-0.28.0" = "sha256-Lh0MzGyJ+q2YxJvLqQ5K+3k3B7Jd4e4j7J3F2G+H+o=";
-    "livekit-protocol-0.2.0" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-    "webrtc-sys-0.4.0" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-    "lsp-types-0.95.0" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-    "markdown-0.3.0" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-bash" = "sha256-4pQqV2qJ2vK2fQ5V6R9O8S7N6P5Q4W3O2M1K9L8=";
-      "tree-sitter-c" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-cpp" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-css" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-dockerfile" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-elixir" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-erlang" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-gleam" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-go" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-hare" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-html" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-java" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-javascript" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-json" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-nix" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-ocaml" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-php" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-python" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-ruby" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-rust" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-sql" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-toml" = "sha256-8j9k7l6m5n4p3q2r1o0s9t8u7v6x5c4b3n2m1k9l8=";
-      "tree-sitter-typescript" = "sha256-7v+X9z+LzQ7j5fX7j6g5h4h3j2k1l9m8n7b6v5c4w3=";
-      "tree-sitter-xml" = "sha256-5h4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-      "tree-sitter-yaml" = "sha256-6f5d4g3j2k1l9m8n7b6v5c4w3n2m1k9l8=";
-    };
+    allowBuiltinFetchGit = true;
   };
 
   nativeBuildInputs = [
