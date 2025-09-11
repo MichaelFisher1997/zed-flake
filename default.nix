@@ -46,6 +46,7 @@ rustPlatform.buildRustPackage rec {
   cargoLock = {
     lockFile = "${src}/Cargo.lock";
     allowBuiltinFetchGit = true;
+    outputHashes = { };
   };
 
   nativeBuildInputs = [
