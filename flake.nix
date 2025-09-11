@@ -46,8 +46,12 @@
             cp zed.app/share/icons/hicolor/512x512/apps/zed.png $out/share/icons/hicolor/512x512/apps/
             cp zed.app/share/icons/hicolor/1024x1024/apps/zed.png $out/share/icons/hicolor/1024x1024/apps/
             
-            # Wrap the binary to ensure it can find necessary libraries
-            wrapProgram $out/bin/zed \
+            # Copy the binary first
+            cp zed.app/bin/zed $out/bin/.zed-wrapped
+            chmod +x $out/bin/.zed-wrapped
+            
+            # Create a wrapper script to handle Zed's socket issues
+            makeWrapper $out/bin/.zed-wrapped $out/bin/zed-wrapper \
               --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [
                 pkgs.stdenv.cc.cc.lib
                 pkgs.xorg.libX11
@@ -71,7 +75,11 @@
                 pkgs.zlib
               ]} \
               --set XDG_RUNTIME_DIR "/run/user/$(id -u)" \
-              --set TMPDIR "/run/user/$(id -u)"
+              --set TMPDIR "/run/user/$(id -u)" \
+              --add-flags "--new"
+            
+            # Create symlink to the wrapper
+            ln -sf $out/bin/zed-wrapper $out/bin/zed
           '';
 
           meta = with pkgs.lib; {
