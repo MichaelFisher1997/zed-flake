@@ -9,7 +9,10 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         zed-version = "0.203.4";
         zed-src = pkgs.fetchurl {
           url = "https://github.com/zed-industries/zed/releases/download/v${zed-version}/zed-linux-x86_64.tar.gz";
