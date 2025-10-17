@@ -18,6 +18,7 @@
             baseUrl = "https://zed.dev/api/releases/${channel}/latest";
             tarballName = "zed-linux-${arch}.tar.gz";
             url = "${baseUrl}/${tarballName}";
+            appName = if isStable then "zed.app" else "zed-preview.app";
             
             # Fetch the tarball to get the hash if not provided
             src = if sha256 != null 
@@ -49,13 +50,21 @@
               xorg.libXcursor
               xorg.libXi
               xorg.libXrandr
+              xorg.libxcb
+              xorg.libXext
+              xorg.libXinerama
+              xorg.libXfixes
+              xorg.libXrender
               libxkbcommon
               wayland
+              wayland-protocols
               fontconfig
               freetype
               dbus
               openssl
               alsa-lib
+              libGL
+              libglvnd
             ];
             
             runtimeDependencies = with pkgs; [
@@ -64,13 +73,21 @@
               xorg.libXcursor
               xorg.libXi
               xorg.libXrandr
+              xorg.libxcb
+              xorg.libXext
+              xorg.libXinerama
+              xorg.libXfixes
+              xorg.libXrender
               libxkbcommon
               wayland
+              wayland-protocols
               fontconfig
               freetype
               dbus
               openssl
               alsa-lib
+              libGL
+              libglvnd
             ];
             
             sourceRoot = ".";
@@ -85,7 +102,7 @@
               mkdir -p $out/libexec
               
               # Copy the main application
-              cp -r zed.app $out/
+              cp -r ${appName} $out/zed.app
               
               # Create wrapper script for the binary
               makeWrapper $out/zed.app/bin/zed $out/bin/zed \
@@ -95,20 +112,28 @@
                   xorg.libXcursor
                   xorg.libXi
                   xorg.libXrandr
+                  xorg.libxcb
+                  xorg.libXext
+                  xorg.libXinerama
+                  xorg.libXfixes
+                  xorg.libXrender
                   libxkbcommon
                   wayland
+                  wayland-protocols
                   fontconfig
                   freetype
                   dbus
                   openssl
                   alsa-lib
+                  libGL
+                  libglvnd
                   stdenv.cc.cc
                   glibc
                 ])} \
                 --set VK_ICD_FILENAMES "${pkgs.lib.makeSearchPath "etc/vulkan/icd.d" (with pkgs; [ vulkan-validation-layers mesa ])}"
               
               # Install desktop file
-              cp $out/zed.app/share/applications/zed.desktop $out/share/applications/dev.zed.Zed.desktop
+              cp $out/zed.app/share/applications/${if isStable then "zed.desktop" else "zed-preview.desktop"} $out/share/applications/dev.zed.Zed.desktop
               
               # Fix paths in desktop file
               substituteInPlace $out/share/applications/dev.zed.Zed.desktop \
@@ -126,13 +151,21 @@
                   xorg.libXcursor
                   xorg.libXi
                   xorg.libXrandr
+                  xorg.libxcb
+                  xorg.libXext
+                  xorg.libXinerama
+                  xorg.libXfixes
+                  xorg.libXrender
                   libxkbcommon
                   wayland
+                  wayland-protocols
                   fontconfig
                   freetype
                   dbus
                   openssl
                   alsa-lib
+                  libGL
+                  libglvnd
                   stdenv.cc.cc
                   glibc
                 ])} \
