@@ -179,8 +179,9 @@ If you encounter GPU-related errors:
 
 ### Audio issues
 
-Zed uses ALSA. For PipeWire/PulseAudio systems, install the ALSA plugin:
+Zed uses ALSA for audio output. The flake includes `alsa-lib` as a dependency, but you may need additional configuration:
 
+**For PipeWire/PulseAudio systems:**
 ```bash
 # On Debian/Ubuntu
 sudo apt install pipewire-alsa
@@ -189,6 +190,19 @@ sudo apt install pipewire-alsa
 pcm.!default {
     type pipewire;
 }
+```
+
+**For NixOS systems:**
+```nix
+# Add to your configuration.nix
+hardware.pulseaudio.enable = true;
+# or for PipeWire:
+services.pipewire = {
+  enable = true;
+  alsa.enable = true;
+  alsa.support32Bit = true;
+  pulse.enable = true;
+};
 ```
 
 ## Updating Hashes
