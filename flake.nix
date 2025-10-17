@@ -55,6 +55,7 @@
               freetype
               dbus
               openssl
+              alsa-lib
             ];
             
             runtimeDependencies = with pkgs; [
@@ -69,6 +70,7 @@
               freetype
               dbus
               openssl
+              alsa-lib
             ];
             
             sourceRoot = ".";
@@ -99,6 +101,7 @@
                   freetype
                   dbus
                   openssl
+                  alsa-lib
                   stdenv.cc.cc
                   glibc
                 ])} \
@@ -129,6 +132,7 @@
                   freetype
                   dbus
                   openssl
+                  alsa-lib
                   stdenv.cc.cc
                   glibc
                 ])} \
